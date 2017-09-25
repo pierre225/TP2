@@ -54,6 +54,7 @@ int main()
 	//14- Afficher le groupe d'image
 	
 	system("pause");
+	system("pause");
 
 	return 0;
 }
