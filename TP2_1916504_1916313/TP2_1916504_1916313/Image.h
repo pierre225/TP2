@@ -15,6 +15,8 @@ public:
 	Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned int nombrePixelLargeur);
 
 	// SI c'est nécessaire ajouter un constructeur par copie
+	// il nous faut faire un constructeur deep copy car c'est une composition par pointeur
+	Image(const Image& copie);
 
 	void doublerTailleEnLargeur();
 	void doublerTailleEnHauteur();

@@ -117,3 +117,54 @@ void Pixel::afficherPixel() const
 		cout << 'Q';
 	}
 }
+
+//Fonction qui retourne le caractère correspondant à la couleur du pixel
+char Pixel::retournerCouleur() const {
+	if (tauxVert_ == 0 && tauxBleu_ == 0 && tauxRouge_ != 0) {
+		return 'R';
+	}
+	else if (tauxRouge_ == 0 && tauxBleu_ == 0 && tauxVert_ != 0) {
+		return 'G';
+
+	}
+	else if (tauxRouge_ == 0 && tauxVert_ == 0 && tauxBleu_ != 0) {
+		return 'B';
+	}
+	else
+	{
+		return 'Q';
+	}
+}
+
+//surcharge de l'opérateur "<<" pour afficher le pixel
+//qu1
+ostream& Pixel::operator<<(ostream &os){
+	this->afficherPixel();
+}
+
+//surcharge de l'opérateur "==" pour comparer 2 pixels
+bool Pixel::operator==(const Pixel& pixel2) const {
+	//on considère deux pixels égaux si ils ont les meme taux pour les couleurs Rouges Vertes et Bleues
+	if (tauxRouge_ == pixel2.tauxRouge_ && tauxVert_ == pixel2.tauxVert_ && tauxBleu_ == pixel2.tauxBleu_){ // attributs de pixels2 dispo car même classe
+		return true;
+	}
+	return false;
+}
+
+//surcharge de l'opérateur "==" pour comparer 2 pixels
+bool Pixel::operator==(const char& charToCompare) const {
+	//on utilise la fonction définie précédemment pour obtenir le char correspondant a la couleur et le comparer
+	if (retournerCouleur() == charToCompare)
+		return true;
+	return false;
+}
+
+//surcharge similaire à celui d'au dessus mais permet d'inverser les termes
+//qu2
+bool Pixel::operator==(const char& charToCompare, const Pixel& pixel) {
+	if (retournerCouleur() == charToCompare)
+		return true;
+	return false;
+}
+
+

@@ -31,6 +31,22 @@ Image::Image(const string& nomImage,unsigned int nombrePixelHauteur, unsigned in
 	}
 }
 
+//constructeur deep copy
+Image::Image(const Image& imageCopiee): nomImage_(imageCopiee.nomImage_), nombrePixelEnHauteur_(imageCopiee.nombrePixelEnHauteur_), nombrePixelEnLargeur_(imageCopiee.nombrePixelEnLargeur_), pixels_(nullptr){
+	//qu 3
+	//initialiser Pixels
+}
+
+//surcharge de l'opérateur "="
+Image& Image::operator=(const Image& otherImage){
+	nomImage_ = otherImage.nomImage_;
+	nombrePixelEnHauteur_ = otherImage.nombrePixelEnHauteur_;
+	nombrePixelEnLargeur_ = otherImage.nombrePixelEnLargeur_;
+	
+	//delete pixels pour eviter la fuite mémoire
+	//faire attention a faire un check qu'on associe pas l'objet a lui meme sinon crash quand on delete
+
+}
 
 void Image::modifierNomImage(const string & nomImage) {
 	nomImage_ = nomImage;

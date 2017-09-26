@@ -24,7 +24,6 @@ TODO : Veuillez répondre aux question ici
 int main()
 {
 
-
 	//1- Creez 9 pixels rouge  (255,0,0)
 	
 	//2-Creez 9 pixels verts (0,255,0)
@@ -53,7 +52,6 @@ int main()
 	
 	//14- Afficher le groupe d'image
 	
-	system("pause");
 	system("pause");
 
 	return 0;
