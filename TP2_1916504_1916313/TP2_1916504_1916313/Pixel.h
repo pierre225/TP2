@@ -28,7 +28,7 @@ public:
 
 	//surcharge de l'opérateur "<<" pour afficher le pixel
 	//qu1
-	ostream& operator<< (ostream &os);
+	friend ostream& operator<<(ostream& o, const Pixel& pixel);
 
 	//surcharge de l'opérateur "==" pour comparer deux pixels
 	bool operator==(const Pixel& pixel2) const;

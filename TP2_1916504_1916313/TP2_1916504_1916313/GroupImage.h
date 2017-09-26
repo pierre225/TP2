@@ -1,6 +1,7 @@
 #ifndef GROUPIMAGE_H
 #define GROUPIMAGE_H
 #include "Image.h"
+#include <vector>
 
 using namespace std;
 
@@ -48,7 +49,7 @@ private:
 	// Attributs à mdifier 
 	unsigned int nombreImages_;
 	unsigned int capaciteImages_;
-	Image* images_;
+	vector<Image*> images_;
 
 };
 

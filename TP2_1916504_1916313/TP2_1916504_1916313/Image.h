@@ -18,6 +18,22 @@ public:
 	// il nous faut faire un constructeur deep copy car c'est une composition par pointeur
 	Image(const Image& copie);
 
+	//surcharge de l'operateur "="
+	Image& operator=(const Image& otherImage);
+
+	//surcharge de l'opérateur "<<" pour afficher
+	friend ostream& operator<<(ostream& o, const Image& image);
+
+	//surcharge de l'opérateur "==" pour comparer deux images
+	bool operator==(const Image& otherImage) const;
+
+	//surcharge de l'opérateur "==" pour comparer un nom et le nom d'une image
+	bool operator==(const string& otherName) const;
+
+	//surcharge de l'opérateur "==" pour comparer un nom et le nom d'une image dans l'autre sens
+	friend bool operator==(const string& otherName, const Image& image);
+
+	
 	void doublerTailleEnLargeur();
 	void doublerTailleEnHauteur();
 

@@ -39,14 +39,70 @@ Image::Image(const Image& imageCopiee): nomImage_(imageCopiee.nomImage_), nombre
 
 //surcharge de l'opérateur "="
 Image& Image::operator=(const Image& otherImage){
-	nomImage_ = otherImage.nomImage_;
-	nombrePixelEnHauteur_ = otherImage.nombrePixelEnHauteur_;
-	nombrePixelEnLargeur_ = otherImage.nombrePixelEnLargeur_;
-	
-	//delete pixels pour eviter la fuite mémoire
-	//faire attention a faire un check qu'on associe pas l'objet a lui meme sinon crash quand on delete
+	//on vérifie que l'on affecte pas l'objet à lui meme
+	if (this != &otherImage){
 
+		//delete pixels pour eviter la fuite mémoire
+		for (unsigned int i = 0; i < nombrePixelEnHauteur_; i++) {
+			delete[] pixels_[i];
+		}
+		pixels_ = 0;
+
+		nomImage_ = otherImage.nomImage_;
+		nombrePixelEnHauteur_ = otherImage.nombrePixelEnHauteur_;
+		nombrePixelEnLargeur_ = otherImage.nombrePixelEnLargeur_;
+		//on associe les pixels de l'autre image
+		for (int i = 0; i < nombrePixelEnHauteur_; i++){
+			for (int i1 = 0; i1 < nombrePixelEnLargeur_; i1++){
+				pixels_[i][i1] = otherImage.pixels_[i][i1];
+			}
+		}
+	}
 }
+
+//surcharge de l'opérator "<<" pour afficher l'image
+ostream& operator<<(ostream& o, const Image& image) {
+	return o << image.afficherImage();
+}
+
+//surcharge de l'opérateur "==" pour comparer deux images
+bool Image::operator==(const Image& otherImage) const {
+	//check d'abord si les noms matchent
+	if (nomImage_ != otherImage.nomImage_) {
+		return false;
+	}
+	// check si les tableaux ont la meme taille
+	else if (nombrePixelEnHauteur_ != otherImage.nombrePixelEnHauteur_ || nombrePixelEnLargeur_ != otherImage.nombrePixelEnLargeur_)
+		return false;
+	else {
+		//check de chaque pixel
+		for (int i = 0; i < nombrePixelEnHauteur_; i++) {
+			for (int i1 = 0; i1 < nombrePixelEnLargeur_; i1++) {
+				if ((pixels_[i][i1] == otherImage.pixels_[i][i1]) == false)
+					return false;
+			}
+		}
+	}
+	//si tous les check sont passé on return true
+	return true;
+}
+
+//surcharge de l'opérateur "==" pour comparer une string et le nom d'une image
+bool Image::operator==(const string& otherName) const {
+	if (nomImage_ == otherName)
+		return true;
+	return false;
+}
+
+//surcharge de l'opérateur "==" pour comparer un nom et le nom d'une image dans l'autre sens
+bool operator==(const string& otherName, const Image& image) {
+	if (image.nomImage_ == otherName)
+		return true;
+	return false;
+}
+
+
+
 
 void Image::modifierNomImage(const string & nomImage) {
 	nomImage_ = nomImage;

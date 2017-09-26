@@ -137,9 +137,8 @@ char Pixel::retournerCouleur() const {
 }
 
 //surcharge de l'opérateur "<<" pour afficher le pixel
-//qu1
-ostream& Pixel::operator<<(ostream &os){
-	this->afficherPixel();
+ostream& operator<<(ostream& o, const Pixel& pixel){
+	return o << pixel.retournerCouleur();
 }
 
 //surcharge de l'opérateur "==" pour comparer 2 pixels
