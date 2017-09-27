@@ -2,7 +2,9 @@
 #define PIXEL_H
 
 
+#include <iostream>
 
+using namespace std;
 
 class Pixel
 {
@@ -27,7 +29,6 @@ public:
 	char retournerCouleur() const;
 
 	//surcharge de l'opérateur "<<" pour afficher le pixel
-	//qu1
 	friend ostream& operator<<(ostream& o, const Pixel& pixel);
 
 	//surcharge de l'opérateur "==" pour comparer deux pixels
@@ -45,5 +46,7 @@ private:
 	unsigned int tauxVert_;
 	unsigned int tauxBleu_;
 };
+
+
 
 #endif

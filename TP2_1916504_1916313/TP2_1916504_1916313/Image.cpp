@@ -1,6 +1,7 @@
 
 #include "Image.h"
 #include <iostream>
+#include <string>
 #include "Const.h"
 
 using namespace std;
@@ -58,11 +59,20 @@ Image& Image::operator=(const Image& otherImage){
 			}
 		}
 	}
+	return *this;
 }
 
 //surcharge de l'opérator "<<" pour afficher l'image
 ostream& operator<<(ostream& o, const Image& image) {
-	return o << image.afficherImage();
+	o << "Affichage de l'image :  " << image.nomImage_ << endl;
+	for (unsigned int i = 0; i < image.nombrePixelEnHauteur_; i++) {
+		o << "    ";
+		for (unsigned int j = 0; j < image.nombrePixelEnLargeur_; j++) {
+			image.pixels_[i][j].afficherPixel();
+		}
+		o << endl;
+	}
+	return o;
 }
 
 //surcharge de l'opérateur "==" pour comparer deux images
@@ -187,9 +197,7 @@ void Image::afficherImage() const {
 }
 
 Pixel Image::obtenirPixel(unsigned int positionLargeur,unsigned int positionHauteur) const {
- 
 	return pixels_[positionHauteur][positionLargeur];
-
 }
 
 void Image::augmenterTeintePixel(unsigned int positionLargeur, unsigned int positionHauteur, int  increment, char couleur) {

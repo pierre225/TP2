@@ -159,9 +159,8 @@ bool Pixel::operator==(const char& charToCompare) const {
 }
 
 //surcharge similaire à celui d'au dessus mais permet d'inverser les termes
-//qu2
-bool Pixel::operator==(const char& charToCompare, const Pixel& pixel) {
-	if (retournerCouleur() == charToCompare)
+bool operator==(const char& charToCompare, const Pixel& pixel)  {
+	if (pixel.retournerCouleur() == charToCompare)
 		return true;
 	return false;
 }
