@@ -48,6 +48,7 @@ void GroupImage::retirerImage(string & nomImage) {
 			nombreImages_--;
 			// supression du dernier element
 			images_.pop_back();
+			cout << "l'image : " << nomImage << " a été retirée" << endl;
 		}
 	}
 }
